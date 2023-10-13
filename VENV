@@ -1,0 +1,27 @@
+from flask import Flask
+import random
+
+app = Flask(__name__)
+
+facts_list = [
+    "Teknolojik bağımlılıktan mustarip olan çoğu kişi, kendilerini şebeke kapsama alanı dışında bulduklarında veya cihazlarını kullanamadıkları zaman yoğun stres yaşarlar.",
+    "2018 yılında yapılan bir araştırmaya göre 18-34 yaş arası kişilerin %50'den fazlası kendilerini akıllı telefonlarına bağımlı olarak görüyor.",
+]
+
+@app.route("/")
+def main():
+    return f'<a href="/rastgele_gercek">Rastgele bir gerçeği görüntüle!|</a> \n <a href="/yazi_tura">|Yazı Tura|</a> \n <a href="/ek_puan_icin">|allah için ek puan|</a>'
+
+@app.route("/rastgele_gercek")
+def random_facts():
+    return f'<p>{random.choice(facts_list)}</p>'
+
+@app.route("/yazi_tura")
+def yazi_tura():
+    return "Yazı Tura: " + random.choice(["Yazı", "Tura"])
+
+@app.route("/ek_puan_icin")
+def ek_puan_icin():
+    return "hocam allah için 1 ek puan ltfen hocam"
+
+app.run(debug=True)
